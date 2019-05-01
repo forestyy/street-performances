@@ -1,0 +1,338 @@
+{
+   "Esplanade at Community Boating": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.072815,
+      "latitude": 42.35971,
+      "altitude": 0,
+      "description": ""
+   },
+   "Esplanade at Hatch Shell": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.07627,
+      "latitude": 42.355499,
+      "altitude": 0,
+      "description": ""
+   },
+   "Esplanade at Dartmouth St.": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.080379,
+      "latitude": 42.354426,
+      "altitude": 0,
+      "description": ""
+   },
+   "Esplanade at BU": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.100824,
+      "latitude": 42.351201,
+      "altitude": 0,
+      "description": ""
+   },
+   "MIT Boathouse": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.087878,
+      "latitude": 42.358633,
+      "altitude": 0,
+      "description": ""
+   },
+   "BU Boathouse": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.107582,
+      "latitude": 42.353326,
+      "altitude": 0,
+      "description": ""
+   },
+   "Magazine Beach": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.113904,
+      "latitude": 42.355669,
+      "altitude": 0,
+      "description": ""
+   },
+   "Magazine Beach diamond": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1129074,
+      "latitude": 42.3540654,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Harborwalk at Carson Beach": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.048187,
+      "latitude": 42.326443,
+      "altitude": 0,
+      "description": ""
+   },
+   "Harborwalk at G St": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.043912,
+      "latitude": 42.33006,
+      "altitude": 0,
+      "description": ""
+   },
+   "Harborwalk at I St": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.039963,
+      "latitude": 42.329989,
+      "altitude": 0,
+      "description": ""
+   },
+   "Harborwalk at M St Beach": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.03307,
+      "latitude": 42.329671,
+      "altitude": 0,
+      "description": ""
+   },
+   "Harborwalk at Pleasure Bay": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.022931,
+      "latitude": 42.333625,
+      "altitude": 0,
+      "description": ""
+   },
+   "Castle Island": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.01194,
+      "latitude": 42.337008,
+      "altitude": 0,
+      "description": ""
+   },
+   "Moakley Park": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.051774,
+      "latitude": 42.324511,
+      "altitude": 0,
+      "description": ""
+   },
+   "Sweeney Playground": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.051764,
+      "latitude": 42.337282,
+      "altitude": 0,
+      "description": ""
+   },
+   "Charles River Canoe & Kayak": {
+      "styleUrl": "#icon-157",
+      "longitude": -71.131099,
+      "latitude": 42.369,
+      "altitude": 0,
+      "description": "Free water during operating hours"
+   },
+   "Cambridge Boat Club": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1342631,
+      "latitude": 42.3722559,
+      "altitude": 0,
+      "description": "Contribution by Reddit user underthehedge ...thanks!"
+   },
+   "Artesani Park": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.138152,
+      "latitude": 42.364747,
+      "altitude": 0,
+      "description": ""
+   },
+   "Artesani Park Building": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.137877,
+      "latitude": 42.364412,
+      "altitude": 0,
+      "description": ""
+   },
+   "Boston Public Library": {
+      "styleUrl": "#icon-157",
+      "longitude": -71.0776404,
+      "latitude": 42.3495529,
+      "altitude": 0,
+      "description": "During hours of operation. <br><br>Contribution by @scw ...thanks! "
+   },
+   "Old Morse Park": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.1078943,
+      "latitude": 42.3580355,
+      "altitude": 0,
+      "description": ""
+   },
+   "Russell Field": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.1382874,
+      "latitude": 42.3957709,
+      "altitude": 0,
+      "description": ""
+   },
+   "Davis Square": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1225191,
+      "latitude": 42.3968601,
+      "altitude": 0,
+      "description": "Contribution by @JeffReese ...thanks!"
+   },
+   "Men's Room at Ellis Oval ": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1194211,
+      "latitude": 42.4035489,
+      "altitude": 0,
+      "description": "Contribution by @JeffReese ...thanks!"
+   },
+   "Women's Room at Ellis Oval ": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.119578,
+      "latitude": 42.4031013,
+      "altitude": 0,
+      "description": "Contribution by @JeffReese ...thanks!"
+   },
+   "Albion Playground": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1078984,
+      "latitude": 42.3918921,
+      "altitude": 0,
+      "description": "Contribution by @JeffReese ...thanks!"
+   },
+   "Otis Playground": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.0902293,
+      "latitude": 42.3882352,
+      "altitude": 0,
+      "description": "Contribution by @JeffReese ...thanks!"
+   },
+   "Path at Cameron Ave": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.129638,
+      "latitude": 42.397716,
+      "altitude": 0,
+      "description": ""
+   },
+   "Pemberton Tennis Courts": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1274704,
+      "latitude": 42.3902955,
+      "altitude": 0,
+      "description": "Contribution by @JeffReese ...thanks!"
+   },
+   "Corcoran Playground": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.127701,
+      "latitude": 42.386177,
+      "altitude": 0,
+      "description": ""
+   },
+   "Alden Play Area": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1163191,
+      "latitude": 42.3827236,
+      "altitude": 0,
+      "description": "Contribution by Reddit user Jammer01 ...thanks!"
+   },
+   "St Peter's Field at Sherman St": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.1321643,
+      "latitude": 42.3877736,
+      "altitude": 0,
+      "description": ""
+   },
+   "St Peter's Field at Garden St": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.1339426,
+      "latitude": 42.386365,
+      "altitude": 0,
+      "description": ""
+   },
+   "Fresh Pond, E": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1439969,
+      "latitude": 42.3835755,
+      "altitude": 0,
+      "description": "Contribution by Reddit user Jammer01 ...thanks!"
+   },
+   "Fresh Pond, NW": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1551937,
+      "latitude": 42.3875299,
+      "altitude": 0,
+      "description": "Contribution by Reddit user underthehedge ...thanks!"
+   },
+   "Corey Hill Outlook Park": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.1333686,
+      "latitude": 42.3424014,
+      "altitude": 0,
+      "description": ""
+   },
+   "Cassidy Playground": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1509424,
+      "latitude": 42.3353839,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Griggs Park": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.125959,
+      "latitude": 42.3387198,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Amory Playground Tennis Courts": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1133164,
+      "latitude": 42.3451858,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Amory Playground field": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1138555,
+      "latitude": 42.346855,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Winthrop Square": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1168636,
+      "latitude": 42.3461869,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Coolidge Corner Branch Library": {
+      "styleUrl": "#icon-157",
+      "longitude": -71.119397,
+      "latitude": 42.343577,
+      "altitude": 0,
+      "description": "During hours of operation.<br><br>Contribution by @scw ...thanks! "
+   },
+   "Jamaica Pond": {
+      "styleUrl": "#icon-61-nodesc",
+      "longitude": -71.11746,
+      "latitude": 42.315746,
+      "altitude": 0,
+      "description": ""
+   },
+   "Arnold Arboretum Centre St": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1251101,
+      "latitude": 42.3017856,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Arnold Arboretum South St": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1196035,
+      "latitude": 42.3010684,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "Larz Anderson Playground": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.1382274,
+      "latitude": 42.3122601,
+      "altitude": 0,
+      "description": "Contribution by @scw ...thanks!"
+   },
+   "William Devine Golf Course": {
+      "styleUrl": "#icon-61",
+      "longitude": -71.088533,
+      "latitude": 42.301063,
+      "altitude": 0,
+      "description": "User submitted"
+   }
+}

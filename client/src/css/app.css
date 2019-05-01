@@ -1,0 +1,72 @@
+.map-container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.mapboxgl-popup-content {
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+}
+
+.mapboxgl-popup-close-button {
+	border-radius: 0 10px 0 0;
+}
+
+/*#event-date-picker {
+	margin: 0 0 1em;
+}*/
+.ui.card {
+	box-shadow: none;
+	background: none;
+}
+
+.ui.card .content {
+	padding: 0.5em 0.5em;
+}
+
+.react-datepicker {
+	width: 293px;
+}
+
+.react-datepicker__time-container {
+	width: 80px;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+	width: 80px;
+}
+
+/*.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input {
+	width: 100%;
+}*/
+
+#eventForm {
+	padding: 0.4em;
+}
+
+#filter {
+	background-color: white;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 0 2px 2px rgb(0, 0, 0, 0.2);
+}
+
+/*.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+        padding-left: unset;
+        padding-right: unset;
+        width: 100px;
+}
+
+.react-datepicker__input-container {
+        width:100%;
+}
+
+.react-datepicker-wrapper {
+        width:100%;
+}
+
+.react-datepicker {
+        width: 314px;
+}*/
