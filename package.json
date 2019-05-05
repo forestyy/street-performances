@@ -34,6 +34,7 @@
     "semantic-ui-react": "^0.84.0",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
+    "tar": "^4.4.2",
     "typed.js": "^2.0.9"
   },
   "devDependencies": {
