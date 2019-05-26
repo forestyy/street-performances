@@ -2,8 +2,21 @@ const express = require('express');
 const connect = require('connect-ensure-login');
 
 const Event = require('./models/event');
+const User = require('./models/user');
 
 const router = express.Router();
+
+router.get('/whoami', function(req, res) {
+    if(req.isAuthenticated()) {
+        User.findOne({ _id: req.user._id }, function(err, user) {
+            if (err) console.log(err);
+            res.send(user);
+        });
+    }
+    else {
+        res.send({});
+    }
+});
 
 router.get('/events', (req, res) => {
 	Event.find({}, (err, events) => {

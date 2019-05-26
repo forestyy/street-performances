@@ -9,7 +9,7 @@ const io = require("socket.io")(http);
 
 // local dependencies
 const db = require('./db');
-// // const passport = require('./passport');
+const passport = require('./passport');
 const api = require('./api');
 
 app.set('socketio', io);
@@ -22,36 +22,41 @@ app.use(session({
   saveUninitialized: 'true'
 }));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // set POST request body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+// });
+
+app.get('/hello', function (req, res) {
+  console.log('hello');
+  res.send('hello world');
 });
 
-// // authentication routes
-// app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+// authentication routes
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
 
-// app.get(
-//   '/auth/google/callback',
-//   passport.authenticate(
-//     'google',
-//     { failureRedirect: '/login' }
-//   ),
-//   function(req, res, next) {
-//     res.redirect('/feed');
-//   }
-// );
+app.get(
+  '/auth/google/callback',
+  passport.authenticate(
+    'google',
+    { failureRedirect: '/' }
+  ),
+  function(req, res, next) {
+    res.redirect('/');
+  }
+);
 
-// app.get('/logout', function(req, res) {
-//   //req.session.destroy();
-//   req.logOut();
-//   res.redirect('/'); 
-// });
+app.get('/logout', function(req, res) {
+  //req.session.destroy();
+  req.logout();
+  res.redirect('/'); 
+});
 
 app.use('/api', api);
 app.use(express.static(publicPath));

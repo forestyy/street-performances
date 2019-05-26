@@ -39,9 +39,11 @@ module.exports = {
     contentBase: './client/dist',
     hot: true,
     proxy: {
+      // '/': 'http://localhost:3000',
+      '/hello': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
-      // '/auth': 'http://localhost:3000',
-      // '/logout': 'http://localhost:3000',
+      '/auth': 'http://localhost:3000',
+      '/logout': 'http://localhost:3000',
       // '/profile': 'http://localhost:3000',
       '/socket.io': 'http://localhost:3000',
     }
