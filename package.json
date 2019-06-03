@@ -12,13 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "animate.css": "^3.7.0",
+    "@babel/core": "^7.4.5",
     "body-parser": "^1.18.3",
     "connect-ensure-login": "^0.1.1",
     "devpack": "0.0.0",
+    "eslint": "^5.16.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "leaflet": "^1.4.0",
     "mapbox-gl": "^0.53.1",
     "moment": "^2.24.0",
     "mongoose": "^5.4.5",
@@ -28,14 +28,11 @@
     "react": "^16.7.0",
     "react-datepicker": "^2.2.0",
     "react-dom": "^16.7.0",
-    "react-leaflet": "^2.2.1",
     "react-router-dom": "^4.3.1",
-    "react-typist": "^2.0.5",
     "semantic-ui-react": "^0.84.0",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
-    "tar": "^4.4.2",
-    "typed.js": "^2.0.9"
+    "tar": "^4.4.9"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
