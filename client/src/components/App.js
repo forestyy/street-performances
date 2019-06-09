@@ -1,184 +1,147 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
 import "../css/app.css";
 import NewEvent from './NewEvent.js';
-import DateFilter from './DateFilter.js';
-import Route from "react-router-dom/es/Route";
-import Switch from "react-router-dom/es/Switch";
-import { Form, Card } from 'semantic-ui-react';
-import io from 'socket.io-client';
-import DatePicker from 'react-datepicker';
-import mapboxgl from 'mapbox-gl'
-import fountains from '../water_fountains.json';
+import DateFilter from './DateFilter.js'; // to be added to sidebar
+import { Ref, Sidebar, Segment, Container, Header, Image, Grid, Input, Menu, Button, Icon } from 'semantic-ui-react';
+import Streets from './Streets.js'
  
-mapboxgl.accessToken = 'pk.eyJ1IjoiZm9yZXN0eSIsImEiOiJjanNzMGxlZzQwYnJhNDNtdDV2YzNjcTlwIn0.B0QmflYC1gXGu_jZKlhzAg'
-
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    this.socket = io();
-
     this.state = {
-      events: [],
-      before: null,
-      after: null,
-      fountains: this.getFountains()
+      userInfo: null,
+      sidebarVisible: false,
+      mode: 'idle',
+      newEventLocation: null
     };
 
-    this.markers = [];
   }
 
   componentDidMount() {
-    this.socket.on('event', (eventObj) => {
-      eventObj.date = new Date(eventObj.date);
-      this.setState({ events: this.state.events.concat([eventObj]) });
-    });
+    this.getUser();
 
-    this.map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/light-v10',
-      center: [-71.0942, 42.3601],
-      zoom: 13
-    })
-
-    this.map.addControl(new FilterControl(this), 'top-left');
-
-    this.map.on('load', () => {
-      console.log(this.map.getStyle());
-      // this.map.setPaintProperty('road-path', 'line-color', '#faafee');
-
-      this.map.addLayer({
-        "id": "hello",
-        "source": {
-          'type': 'vector',
-          'url': 'mapbox://mapbox.mapbox-streets-v8'
-        },
-        // 'filter': ['any', ['==', 'type', 'cycleway'], ['==', 'type', 'path']],
-        // 'filter': ['any', ['==', 'class', 'street'], ['==', 'type', 'cycleway'], ['==', 'class', 'street_limited'], ['==', 'class', 'trunk']],
-        'filter': ['==', 'type', 'cycleway'],
-        "source-layer": "road",
-        "type": "line",
-        "paint": {
-          "line-color": 'black'
-        }
-      });
-
-      this.map.addLayer({
-        "id": "fountains",
-        "source": {
-          'type': 'geojson',
-          'data': this.getFountains()
-        },
-        // 'filter': ['any', ['==', 'type', 'cycleway'], ['==', 'type', 'path']],
-        // 'filter': ['any', ['==', 'class', 'street'], ['==', 'type', 'cycleway'], ['==', 'class', 'street_limited'], ['==', 'class', 'trunk']],
-        "type": "symbol",
-        "layout": {
-          "icon-image": 'drinking-water-15'
-        }
-      });
-
-      this.map.on('click', (e) => {
-        // console.log('hello');
-        if (this.newPopup != null) {
-          this.newPopup.remove();
-          this.newPopup = null;
-        }
-
-        if (!e.originalEvent.target.parentNode.parentNode.parentNode.parentNode.classList.contains('mapboxgl-marker')) {
-
-
-          let popup = new mapboxgl.Popup();
-
-          let holder = document.createElement('div');
-          ReactDOM.render(<NewEvent addEvent={this.addEvent} closePopup={popup.remove} location={e.lngLat}></NewEvent>, holder);
-          // ReactDOM.render(<p>Hi</p>, holder);
-
-          popup.setDOMContent(holder)
-            .setLngLat(e.lngLat)
-            .addTo(this.map);
-        } 
-      });
-    });
-
-    this.getEvents();
+    // let topMenu = document.getElementById('topMenu');
+    // topMenu.classList.add('top-menu');
   }
 
-  // componentWillUnmount() {
-  //   this.socket.disconnect();
-  // }
-  componentDidUpdate() {
-    const { events, before, after } = this.state;
-    // console.log(events, before, after);
+  render() {
+    const { userInfo, sidebarVisible, mode, newEventLocation } = this.state;
+    const action = mode == 'idle' ?
+      this.handleShowClick
+      : () => { this.switchIdleLocationSelect('idle'); }
+    const icon = mode != 'idle' ? 'arrow left' : 'bars';
 
-    this.markers.forEach((marker) => { marker.remove(); });
-
-    this.markers = events
-      .filter((eventObj) => (after == null || eventObj.date >= after) && (before == null || eventObj.date <= before))
-      .map((eventObj) => {
-          let popup = new mapboxgl.Popup();
-            // .setHTML('<h3>' + eventObj.artist + '</h3><p>' + eventObj.date.toLocaleString('en-US', {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'}) + '</p>');
-          let holder = document.createElement('div');
-          ReactDOM.render(
-            <Card>
-              <Card.Content>
-                <Card.Header>{eventObj.artist}</Card.Header>
-                <Card.Meta>{eventObj.date.toLocaleString('en-US', {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}</Card.Meta>
-                <Card.Description>{eventObj.description}</Card.Description>
-              </Card.Content>
-            </Card>,
-            holder
-          );
-
-          popup.setDOMContent(holder);
-          // create the marker
-          let marker = new mapboxgl.Marker()
-            .setLngLat(eventObj.location.coordinates)
-            .setPopup(popup) // sets a popup on this marker
-            .addTo(this.map);
-
-          return marker;
-          // console.log(this.markers)
-        }
-    );
-  }
-
-  render() { 
     return (
-      <div ref={el => this.mapContainer = el} className="map-container" />
+      <div>
+        <Sidebar.Pushable>
+          <Sidebar
+            animation='overlay'
+            icon='labeled'
+            onHide={this.handleHideClick}
+            visible={sidebarVisible}
+            target={this.mapRef}
+          >
+            {/*<Menu secondary>
+              <Menu.Item
+                name='events'
+                active={true}
+              />
+              <Menu.Item
+                name='settings'
+                active={false}
+              />
+            </Menu>*/}
+            
+          </Sidebar>
+          <Ref innerRef={this.mapRef}>
+            <Sidebar.Pusher dimmed={sidebarVisible}>
+              <Streets selecting={mode == 'selecting-location'} setNewEventLocation={this.setNewEventLocation}/>
+              <div className='bars-container'>
+                <Button onClick={action} className='bars-button' icon={icon}/>
+              </div>
+              {mode=='idle' ?
+                (<div>
+                  <div className='post-button-container'>
+                  {userInfo ?
+                    (<Button className='post-button' onClick={() => { this.switchIdleLocationSelect('selecting-location'); }} fluid size='big'>
+                        Post an event
+                      </Button>)
+                    :
+                    (<Button className='post-button' as='a' href='/auth/google' fluid size='big'>
+                        <Icon name='google'/>Login to post an event
+                      </Button>)
+                  }
+                  </div>
+                </div>)
+                : (<div/>)
+              }
+              <Segment id='bottom-segment' className='bottom'>
+                {mode == 'entering-details' ?
+                  (<NewEvent addEvent={this.addEvent} switchVisibleFull={this.switchVisibleFull} toIdle={this.toIdle} location={newEventLocation} user={this.state.userInfo}/>)
+                  :
+                  (
+                  <div>
+                    <h1>Set location</h1>
+                    <p>Move the center of the map over the location of your event.</p>
+                    <Button className='bottom' size='huge' onClick={() => { this.switchVisibleFull('entering-details'); }} primary fluid>Set location</Button>
+                  </div>
+                  )
+                }
+              </Segment>
+            </Sidebar.Pusher>
+          </Ref>
+        </Sidebar.Pushable>
+      </div>
     );
   }
 
-  getFountains = () => {
-    let res = {
-      'type': 'FeatureCollection',
-      'features': []
-    }
-    for (let name in fountains) {
-      res.features.push({
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            fountains[name].longitude,
-            fountains[name].latitude
-          ]
-        },
-        "properties": {
-          "name": name,
+  switchVisibleFull = (newMode) => {
+    this.setState({ mode: newMode}, () => {
+      document.getElementById('bottom-segment').classList.toggle('full');
+    });
+  }
+
+  switchIdleLocationSelect = (newMode) => {
+    document.getElementById('bottom-segment').classList.toggle('visible');
+    this.setState({ mode: newMode});
+  }
+
+  toIdle = () => {
+    document.getElementById('bottom-segment').classList.toggle('full');
+    document.getElementById('bottom-segment').classList.toggle('visible');
+    this.setState({ mode: 'idle'}, () => { console.log(this.state.mode); });
+  }
+
+  handleHideClick = () => this.setState({ sidebarVisible: false }, () => { console.log('handleHideClick') })
+  handleShowClick = () => this.setState({ sidebarVisible: true }, () => { console.log('handleShowClick') })
+
+  getUser = () => {    
+    fetch('/api/whoami')
+    .then(res => res.json())
+    .then(
+        userObj => {
+            // console.log(userObj);
+            // console.log('fetched user');
+            if (userObj._id !== undefined) {
+                this.setState({ 
+                    userInfo: userObj
+                }, () => { console.log(this.state.userInfo)});
+            } else {
+                this.setState({ 
+                    userInfo: null
+                }, () => { console.log(this.state.userInfo)});
+            }
         }
-      });
-    }
-    return res
+    );
   }
 
-  setBefore = (date) => {
-    this.setState({ before: date }, () => {console.log(this.state.before)});
-  }
-
-  setAfter = (date) => {
-    this.setState({ after: date }, () => {console.log(this.state.after)});
+  setNewEventLocation = (location, callback) => {
+    this.setState({newEventLocation: location}, () => {
+      typeof callback === 'function' && callback();
+      console.log(this.state.newEventLocation);
+    });
   }
 
   addEvent(artist, date, description, location, callback) {
@@ -188,7 +151,7 @@ class App extends Component {
       'description': description, 
       'location': [location.lng, location.lat]
     };
-    console.log(body)
+    // console.log(body)
     fetch('/api/new_event', {
       method: 'POST',
       headers: {
@@ -198,54 +161,6 @@ class App extends Component {
     })
     .then((res) => { callback(); });
   }
-
-  // addPost = (content, callback) => {
-  //       const body = { 
-  //           'content': content,
-  //           'class': this.props.activeClass,
-  //           'upvote': 0
-  //       };
-  //       fetch('/api/post', {
-  //           method: 'POST',
-  //           headers: {
-  //               'Content-Type': 'application/json'
-  //           },
-  //           body: JSON.stringify(body)
-  //       })
-  //       .then((res) => { callback(); });
-  //   };
-
-  getEvents() {
-    fetch('/api/events')
-    .then(res => res.json())
-    .then(eventObjs =>
-      this.setState({ events: eventObjs.map(eventObj => { eventObj.date = new Date(eventObj.date); return eventObj; }) })
-    );
-  }
-}
-
-class FilterControl {
-    constructor(parent) {
-      this.parent = parent;
-      console.log(this.parent)
-    }
-
-    onAdd(map) {
-        this._map = map;
-        this._container = document.createElement('div')
-        this._container.id = 'filter';
-        this._container.className = 'mapboxgl-ctrl';
-        // this._container.textContent = 'Hello, world';
-        ReactDOM.render(
-          <DateFilter setBefore={this.parent.setBefore} setAfter={this.parent.setAfter}/>, this._container
-        );
-        return this._container;
-    }
-
-    onRemove() {
-        this._container.parentNode.removeChild(this._container);
-        this._map = undefined;
-    }
 }
 
 export default App;

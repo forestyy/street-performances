@@ -1,22 +1,153 @@
-.map-container {
+@media screen and (max-width: 500px) {
+	.sidebar.visible {
+		width: 80vw!important;
+	}
+}
+
+
+#top-menu {
+	/*background-color: #2185d0;*/
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	padding: 10px 10px 5px;
+	/*box-shadow: 0 1px 3px rgb(0, 0, 0, 0.3);*/
+
+}
+
+#top-menu .item {
+	color: #2185d0;
+}
+
+.segment.bottom {
+	position: absolute;
+	bottom: 0;
+	max-height: 0;
+	min-height: 0;
+	width: 100%;
+	margin-top: 0px;
+	/*background-color: #f8f9fa;*/
+	border-radius: 0px;
+	box-shadow: 0 -0.25px 5px rgb(0, 0, 0, 0.05);
+	border: none;
+	z-index: 1;
+	transition: max-height 0.25s ease, min-height 0.25s ease;
+	padding: 0;
+	/*box-sizing: border-box;*/
+	/*padding: 0;*/
+/*	display: flex;
+	flex-direction: column;
+	justify-content: space-between;*/
+	/*
+	display: flex;
+	justify-content: center;
+	align-items: center;*/
+}
+
+.segment.bottom form {
+	margin-top: 1.5em;
+}
+
+.segment.bottom.visible {
+	/*transform: translateY(-30vh);*/
+	padding: 1em 1.5em 1.5em;
+	max-height: 30vh;
+}
+
+.segment.bottom.visible.full {
+	padding: 1.5em;
+	max-height: 100vh;
+	min-height: 100vh;
+}
+/*
+.login-label {
+	font-size: 1.2em;
+}*/
+.ant-input-lg {
+	height: 3em;
+	font-size: 1.3em!important;
+}
+
+.DayPicker {
+	font-size: 1em;
+}
+
+.DayPicker-Month {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+
+.sidebar {
+	padding: 10px;
+	background-color: #f8f9fa;
+}
+
+/*.ui.button.bottom {
+	position: absolute;
+	bottom: 0;
+}
+*/
+.ui.button.login {
+	background: #fff;
+	box-shadow: 0 1px 4px rgb(0, 0, 0, 0.3);
+}
+
+.bars-container .ui.button {
+	margin: 15px 0 0 15px;
+	z-index: 1;
+	box-shadow: 0 2px 2px rgb(0, 0, 0, 0.2);
+	background-color: white;
+}
+
+.bars-container {
 	position: absolute;
 	top: 0;
+	left: 0;
+}
+
+.post-button-container .ui.button {
+	margin-bottom: 50px;
+	z-index: 1;
+	box-shadow: 0 2px 2px rgb(0, 0, 0, 0.2);
+	background-color: white;
+}
+
+.post-button-container {
+	position: absolute;
+	width: 80%;
 	bottom: 0;
+	left: 10%;
+}
+
+.map-container {
+	/*position: fixed;
+	top: 0;
+	bottom: 0;*/
+	z-index: -1;
+	height: 100vh;
 	width: 100%;
 }
 
+.ui.grid>.column:not(.row) {
+	padding: 0px;
+}
+
+.ui.grid {
+	margin: 0px;
+}
+/*
 .mapboxgl-popup-content {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
-}
-
-.mapboxgl-popup-close-button {
-	border-radius: 0 10px 0 0;
-}
-
-/*#event-date-picker {
-	margin: 0 0 1em;
 }*/
+
+/*.mapboxgl-popup-close-button {
+	border-radius: 0 10px 0 0;
+	visibility: hidden;
+}*/
+
 .ui.card {
 	box-shadow: none;
 	background: none;
@@ -24,8 +155,26 @@
 
 .ui.card .content {
 	padding: 0.5em 0.5em;
+	/*color: #000!important;*/
 }
 
+.ui.card .meta {
+	color: #000;
+}
+
+.ui.card>.content>.header+.meta+.description {
+	color: #000;
+}
+
+/*i.small.icon.close {
+	position: relative;
+	bottom: 3px;
+	margin-right: 0.5em;
+}*/
+
+.react-datepicker-wrapper {
+	margin: 0 0 1em;
+}
 .react-datepicker {
 	width: 293px;
 }
@@ -37,10 +186,6 @@
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
 	width: 80px;
 }
-
-/*.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input {
-	width: 100%;
-}*/
 
 #eventForm {
 	padding: 0.4em;

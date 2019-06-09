@@ -29,9 +29,9 @@ app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-// });
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+});
 
 app.get('/hello', function (req, res) {
   console.log('hello');
@@ -53,7 +53,6 @@ app.get(
 );
 
 app.get('/logout', function(req, res) {
-  //req.session.destroy();
   req.logout();
   res.redirect('/'); 
 });
@@ -64,8 +63,6 @@ app.use(express.static(publicPath));
 http.listen((process.env.PORT || 3000), () => {
   console.log(`Listening on port 3000 and looking in folder ${publicPath}`);
 });
-
-// app.use('/favicon.ico', express.static(publicPath + '/dist/favicon.ico'));
 
 
 
