@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../css/app.css";
 import NewEvent from './NewEvent.js';
-import DateFilter from './DateFilter.js'; // to be added to sidebar
+import DateFilter from './DateFilter.js';
 import { Ref, Sidebar, Segment, Container, Header, Image, Grid, Input, Menu, Button, Icon } from 'semantic-ui-react';
 import Streets from './Streets.js'
  
@@ -14,20 +14,20 @@ class App extends Component {
       userInfo: null,
       sidebarVisible: false,
       mode: 'idle',
-      newEventLocation: null
+      before: null,
+      after: null
     };
+
+    this.streetsRef = React.createRef();
 
   }
 
   componentDidMount() {
     this.getUser();
-
-    // let topMenu = document.getElementById('topMenu');
-    // topMenu.classList.add('top-menu');
   }
 
   render() {
-    const { userInfo, sidebarVisible, mode, newEventLocation } = this.state;
+    const { userInfo, sidebarVisible, mode, before, after } = this.state;
     const action = mode == 'idle' ?
       this.handleShowClick
       : () => { this.switchIdleLocationSelect('idle'); }
@@ -43,21 +43,12 @@ class App extends Component {
             visible={sidebarVisible}
             target={this.mapRef}
           >
-            {/*<Menu secondary>
-              <Menu.Item
-                name='events'
-                active={true}
-              />
-              <Menu.Item
-                name='settings'
-                active={false}
-              />
-            </Menu>*/}
+            {/*<DateFilter setEndDate={this.setBefore} setStartDate={this.setAfter}/>*/}
             
           </Sidebar>
           <Ref innerRef={this.mapRef}>
             <Sidebar.Pusher dimmed={sidebarVisible}>
-              <Streets selecting={mode == 'selecting-location'} setNewEventLocation={this.setNewEventLocation}/>
+              <Streets ref={this.streetsRef} startDate={after} endDate={before} selecting={mode == 'selecting-location'}/>
               <div className='bars-container'>
                 <Button onClick={action} className='bars-button' icon={icon}/>
               </div>
@@ -77,19 +68,19 @@ class App extends Component {
                 </div>)
                 : (<div/>)
               }
-              <Segment id='bottom-segment' className='bottom'>
+              <div id='bottom-segment' className='ui bottom'>
                 {mode == 'entering-details' ?
-                  (<NewEvent addEvent={this.addEvent} switchVisibleFull={this.switchVisibleFull} toIdle={this.toIdle} location={newEventLocation} user={this.state.userInfo}/>)
+                  (<NewEvent addEvent={this.addEvent} switchVisibleFull={this.switchVisibleFull} toIdle={this.toIdle} location={this.streetsRef.current.map.getCenter()} user={this.state.userInfo}/>)
                   :
                   (
                   <div>
                     <h1>Set location</h1>
                     <p>Move the center of the map over the location of your event.</p>
-                    <Button className='bottom' size='huge' onClick={() => { this.switchVisibleFull('entering-details'); }} primary fluid>Set location</Button>
+                    <Button size='huge' onClick={() => { this.switchVisibleFull('entering-details'); }} primary fluid>Set location</Button>
                   </div>
                   )
                 }
-              </Segment>
+              </div>
             </Sidebar.Pusher>
           </Ref>
         </Sidebar.Pushable>
@@ -111,7 +102,9 @@ class App extends Component {
   toIdle = () => {
     document.getElementById('bottom-segment').classList.toggle('full');
     document.getElementById('bottom-segment').classList.toggle('visible');
-    this.setState({ mode: 'idle'}, () => { console.log(this.state.mode); });
+    this.setState({ mode: 'idle'}, () => { 
+      console.log(this.state.mode);
+    });
   }
 
   handleHideClick = () => this.setState({ sidebarVisible: false }, () => { console.log('handleHideClick') })
@@ -137,11 +130,12 @@ class App extends Component {
     );
   }
 
-  setNewEventLocation = (location, callback) => {
-    this.setState({newEventLocation: location}, () => {
-      typeof callback === 'function' && callback();
-      console.log(this.state.newEventLocation);
-    });
+  setBefore = (date) => {
+    this.setState({ before: date }, () => {console.log(this.state.before)});
+  }
+
+  setAfter = (date) => {
+    this.setState({ after: date }, () => {console.log(this.state.after)});
   }
 
   addEvent(artist, date, description, location, callback) {

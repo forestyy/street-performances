@@ -22,8 +22,6 @@ class Streets extends Component {
 
     this.state = {
       events: [],
-      before: null,
-      after: null,
     };
 
     this.markers = [];
@@ -88,8 +86,7 @@ class Streets extends Component {
 
     this.map.on('move', () => {
       if (this.newMarker) {
-        const center = this.map.getCenter();
-        this.props.setNewEventLocation(center, () => { this.newMarker.setLngLat(this.map.getCenter()); });
+        this.newMarker.setLngLat(this.map.getCenter());
       }
     });
 
@@ -97,14 +94,12 @@ class Streets extends Component {
   }
 
   componentDidUpdate() {
-    const { events, before, after } = this.state;
+    const { events } = this.state;
 
     if (this.props.selecting && !this.newMarker) {
-      const center = this.map.getCenter();
-      this.newMarker = new mapboxgl.Marker({color: '#000'})
-        .setLngLat(center)
+      this.newMarker = new mapboxgl.Marker({color: '#2185d0'})
+        .setLngLat(this.map.getCenter())
         .addTo(this.map);
-      this.props.setNewEventLocation(center);
     }
 
     if (!this.props.selecting && this.newMarker) {
@@ -116,7 +111,7 @@ class Streets extends Component {
     this.markers.forEach((marker) => { marker.remove(); });
 
     this.markers = events
-      .filter((eventObj) => (after == null || eventObj.date >= after) && (before == null || eventObj.date <= before))
+      .filter((eventObj) => (this.props.startDate == null || eventObj.date >= this.props.startDate.toDate()) && (this.props.endDate == null || eventObj.date <= this.props.endDate.toDate()))
       .map((eventObj) => {
           let popup = new mapboxgl.Popup({anchor: 'bottom'});
           let holder = document.createElement('div');
@@ -133,7 +128,7 @@ class Streets extends Component {
 
           popup.setDOMContent(holder);
           // create the marker
-          let marker = new mapboxgl.Marker()
+          let marker = new mapboxgl.Marker({color: 'rgba(0, 0, 0, 0.65)'})
             .setLngLat(eventObj.location.coordinates)
             .setPopup(popup) // sets a popup on this marker
             .addTo(this.map);
@@ -170,14 +165,6 @@ class Streets extends Component {
       });
     }
     return res
-  }
-
-  setBefore = (date) => {
-    this.setState({ before: date }, () => {console.log(this.state.before)});
-  }
-
-  setAfter = (date) => {
-    this.setState({ after: date }, () => {console.log(this.state.after)});
   }
 
   addEvent(artist, date, description, location, callback) {
