@@ -4,58 +4,44 @@
 	}
 }
 
-
 #top-menu {
-	/*background-color: #2185d0;*/
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	padding: 10px 10px 5px;
-	/*box-shadow: 0 1px 3px rgb(0, 0, 0, 0.3);*/
-
 }
 
 #top-menu .item {
 	color: #2185d0;
 }
 
-.segment.bottom {
+.bottom {
 	position: absolute;
 	bottom: 0;
 	max-height: 0;
 	min-height: 0;
 	width: 100%;
 	margin-top: 0px;
-	/*background-color: #f8f9fa;*/
+	background-color: #fff;
 	border-radius: 0px;
 	box-shadow: 0 -0.25px 5px rgb(0, 0, 0, 0.05);
 	border: none;
 	z-index: 1;
 	transition: max-height 0.25s ease, min-height 0.25s ease;
 	padding: 0;
-	/*box-sizing: border-box;*/
-	/*padding: 0;*/
-/*	display: flex;
-	flex-direction: column;
-	justify-content: space-between;*/
-	/*
-	display: flex;
-	justify-content: center;
-	align-items: center;*/
 }
 
-.segment.bottom form {
+.bottom form {
 	margin-top: 1.5em;
 }
 
-.segment.bottom.visible {
-	/*transform: translateY(-30vh);*/
+.bottom.visible {
 	padding: 1em 1.5em 1.5em;
 	max-height: 30vh;
 }
 
-.segment.bottom.visible.full {
+.bottom.visible.full {
 	padding: 1.5em;
 	max-height: 100vh;
 	min-height: 100vh;
@@ -79,9 +65,10 @@
 }
 
 
-.sidebar {
+.ui.left.sidebar {
 	padding: 10px;
 	background-color: #f8f9fa;
+	width: auto;
 }
 
 /*.ui.button.bottom {
@@ -137,16 +124,6 @@
 .ui.grid {
 	margin: 0px;
 }
-/*
-.mapboxgl-popup-content {
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-	border-radius: 10px;
-}*/
-
-/*.mapboxgl-popup-close-button {
-	border-radius: 0 10px 0 0;
-	visibility: hidden;
-}*/
 
 .ui.card {
 	box-shadow: none;
@@ -165,12 +142,6 @@
 .ui.card>.content>.header+.meta+.description {
 	color: #000;
 }
-
-/*i.small.icon.close {
-	position: relative;
-	bottom: 3px;
-	margin-right: 0.5em;
-}*/
 
 .react-datepicker-wrapper {
 	margin: 0 0 1em;
@@ -197,21 +168,3 @@
 	border-radius: 10px;
 	box-shadow: 0 2px 2px rgb(0, 0, 0, 0.2);
 }
-
-/*.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
-        padding-left: unset;
-        padding-right: unset;
-        width: 100px;
-}
-
-.react-datepicker__input-container {
-        width:100%;
-}
-
-.react-datepicker-wrapper {
-        width:100%;
-}
-
-.react-datepicker {
-        width: 314px;
-}*/
